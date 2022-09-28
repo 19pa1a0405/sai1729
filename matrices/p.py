@@ -20,10 +20,10 @@ import shlex
 
 
 #input parameters
-a=5                     #length of base (AB)
-b=4                     #length of side (AD)
-theta = np.pi/3         #angle between AB & AD
-C = np.array([0,0])     #Vertex A
+a=5                     #length of base (CD)
+b=4                     #length of side (CB)
+theta = np.pi/3         #angle between CB & CD
+C = np.array([0,0])     #Vertex C
 B = np.array([a,0])
 D = b*np.array([(np.cos(theta)),(np.sin(theta))])
 A = B-C+D
@@ -41,12 +41,13 @@ m=A-D
 n=A-B
 
 ar3=0.5*np.linalg.norm((np.cross(k,l)))
-ar4=0.5*np.linalg.norm((np.cross(m,n)))
-
+ar4=0.5*np.linalg.norm((np.cross(n,B)))
+ar5=0.5*np.linalg.norm((np.cross(m,n)))
 print("Ar(DOC)=",ar1)
 print("Ar(AOB)=",ar2)
 print("Ar(DCB)=",ar3)
-print("Ar(ACB)=",ar3)
+print("Ar(ACB)=",ar4)
+print("Ar(DAB)=",ar5)
 ##Generating all lines
 x_AB = line_gen(A,B)
 x_BC = line_gen(B,C)
@@ -76,20 +77,15 @@ tri_coords = np.vstack((A,B,C,D,O)).T
 plt.scatter(tri_coords[0,:], tri_coords[1,:])
 vert_labels = ['A','B','C','D','O']
 for i, txt in enumerate(vert_labels):
-    plt.annotate(txt,                                   # this is the text
-                 (tri_coords[0,i], tri_coords[1,i]),    # this is the point to label
-                 textcoords="offset points",            # how to position the text
-                 xytext=(5,-15),                      # distance from text to points (x,y)
-                 ha='left')                           # horizontal alignment can be left, right or center
+    plt.annotate(txt,                                   
+                 (tri_coords[0,i], tri_coords[1,i]),   
+                 textcoords="offset points",            
+                 xytext=(5,-15),                      
+                 ha='left')                           
 
 plt.xlabel('$x-axis$')
 plt.ylabel('$y-axis$')
 plt.legend(loc='best')
 plt.grid()
 plt.axis('equal')
-
-#if using termux
-#plt.savefig('/storage/emulated/0/github/cbse-papers/2020/math/10/solutions/figs/matrix-10-2.pdf')
-#subprocess.run(shlex.split("termux-open '/storage/emulated/0/github/cbse-papers/2020/math/10/solutions/figs/matrix-10-2.pdf'")) 
-#else
 plt.show()
