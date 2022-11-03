@@ -1,0 +1,166 @@
+\def\mytitle{Boolean Expression to its simplest form using K-map}
+\def\mykeywords{}
+\def\myauthor{Akana Sai Kumar}
+\def\contact{19pa1a0405@vishnu.edu.in}
+\def\mymodule{Future Wireless Communication-(FWC22032)}
+\documentclass[10pt, a4paper]{article}
+\usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
+\twocolumn
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{watermark}
+\usepackage{karnaugh-map}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{algorithm2e}
+
+\titlespacing{\subsection}{0pt}{\parskip}{-3pt}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\paragraph}{0pt}{\parskip}{\parskip}
+\newcommand{\figuremacro}[5]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#5\columnwidth]{#2}
+        \caption[#3]{\textbf{#3}#4}
+        \label{fig:#2}
+    \end{figure}
+}
+
+\lstset{
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+\thiswatermark{\centering \put(0,-90.0){\includegraphics[scale=0.05]{logo.jpg}} }
+\title{\mytitle}
+\author{\myauthor\hspace{1em}\\\contact\\IITH\hspace{0.5em}-\hspace{0.5em}\mymodule}
+\date{}
+\hypersetup{pdfauthor=\myauthor,pdftitle=\mytitle,pdfkeywords=\mykeywords}
+\sloppy
+\begin{document}
+  \maketitle
+\tableofcontents
+
+\section{Introduction}
+K maps are used to  Simplify  Boolean Expressions the given Expression to solve 
+F(X,Y,Z,W)=(0,1,4,5,6,7,8,9,11,15)
+
+        
+
+
+
+\section{karnaugh-map}
+        \begin{karnaugh-map}[4][4][1][$ZW$][$XY$]
+        \minterms{0,1,4,5,6,7,8,9,11,15}
+        \maxterms{2,3,10,12,13,14}
+        \implicant{0}{5}
+        \implicantedge{0}{1}{8}{9}
+        \implicant{4}{6}
+        \implicant{15}{11}
+        \end{karnaugh-map}
+
+        F=X'Z'+Y'Z'+X'Y+XZW
+
+
+
+
+\section{Components}
+
+
+
+\begin{table}[htbp]
+ \begin{center}
+    \begin{tabular}{|l|c|c|c|c|c|c} \hline \textbf{Component}
+  & \textbf{value} & \textbf{quantity} \\
+ \hline
+Resistor & 220 ohm & 1 \\ \hline
+Vaman & Esp32 & 1 \\ \hline
+LED &  & 1 \\ \hline
+Bread board &  & 1 \\ \hline
+Jumper wires & M-M & 10\\ \hline
+\end{tabular}   
+\end{center}
+\caption{\label{table:dummytable} }
+\end{table}
+
+
+\section{Truth table for given expression}
+\begin{table}[htbp]
+ \begin{center}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c} \hline \textbf{X}
+  & \textbf{Y} & \textbf{Z} & \textbf{W}& \textbf{F} \\
+ \hline
+        0&0&0&0&1 \\
+        \hline
+        0&0&0&1&1 \\
+        \hline
+        0&0&1&0&0 \\
+        \hline
+        0&0&1&1&0 \\
+        \hline
+        0&1&0&0&1 \\
+        \hline
+        0&1&0&1&1 \\
+        \hline
+        0&1&1&0&1 \\
+        \hline
+        0&1&1&1&1 \\
+        \hline
+        1&0&0&0&1 \\
+        \hline
+        1&0&0&1&1 \\
+        \hline
+        1&0&1&0&0 \\
+        \hline
+        1&0&1&1&1 \\
+        \hline
+        1&1&0&0&0 \\
+        \hline
+        1&1&0&1&0 \\
+        \hline
+        1&1&1&0&0 \\
+        \hline
+        1&1&1&1&1 \\
+        \hline
+\end{tabular}   
+\end{center}
+\caption{\label{table:dummytable} }
+\end{table}
+
+\section{Connections and results}
+
+
+
+\begin{table}[htbp]
+ \begin{center}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c} \hline \textbf{Vaman}
+  & \textbf{8} & \textbf{9} & \textbf{10}& \textbf{11}& \textbf{2}& \textbf{gnd} \\
+ \hline
+Input&X&Y&Z&W&&\\ \hline
+led&&&&&+&- \\ \hline
+\end{tabular}   
+\end{center}
+\caption{\label{table:dummytable} }
+\end{table}
+
+
+\begin{table}[htbp]
+ \begin{center}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c} \hline \textbf{Sample input}
+  & \textbf{X} & \textbf{Y} & \textbf{Z}& \textbf{W}& \textbf{LED } \\
+ \hline
+1&0&0&0&0&ON\\ \hline
+2&0&0&1&0&OFF \\ \hline
+\end{tabular}   
+\end{center}
+\caption{\label{table:dummytable} }
+\end{table}
+\end{document}
